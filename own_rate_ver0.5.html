@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>1위안은 얼마입니까?</title>
+</head>
+<body>
+  <h1>환율 직접 입력</h1>
+  <input id="exchange-input" type="number" placeholder="1元은 얼마인가요?(원)">
+  <input id="cny-input" type="number" placeholder="请输入价格(元)">
+  <button onclick="convertCNY()">convert</button>
+  <p id="result"></p>
+
+  <script>
+    function convertCNY() {
+      const exchangeRateElement = document.getElementById('exchange-input');
+      const exchangeRate = parseFloat(exchangeRateElement.value);
+
+      if (isNaN(exchangeRate)) {
+        alert("환율을 숫자로 입력하세요.");
+        return;
+      }
+
+      const inputElement = document.getElementById('cny-input');
+      const inputValue = parseFloat(inputElement.value);
+
+      if (isNaN(inputValue)) {
+        alert("가격을 숫자로 입력하세요.");
+        return;
+      }
+
+      const krwValue = inputValue * exchangeRate;
+      const roundedKRW = Math.round(krwValue / 100) * 100;
+
+      const resultElement = document.getElementById('result');
+      resultElement.textContent = `${krwValue.toFixed(2)}원 (약 ${roundedKRW}원)`;
+    }
+  </script>
+</body>
+</html>

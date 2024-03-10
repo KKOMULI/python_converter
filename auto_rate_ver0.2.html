@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CNY to KRW Converter</title>
+</head>
+<body>
+  <h1>환율 자동 입력</h1>
+  <input id="cny-input" type="number" placeholder="请输入价格(元)">
+  <button onclick="convertCNY()">Convert</button>
+  <p id="result"></p>
+
+  <script>
+    const CNY_RATE = 184.9;
+
+    function convertCNY() {
+      const inputElement = document.getElementById('cny-input');
+      const inputValue = parseFloat(inputElement.value); // Convert input to float
+
+      if (isNaN(inputValue)) {
+        alert("Please enter a valid number.");
+        return;
+      }
+
+      const krwValue = inputValue * CNY_RATE;
+      const roundedKRW = Math.round(krwValue / 100) * 100;
+
+      const resultElement = document.getElementById('result');
+      resultElement.textContent = `${krwValue.toFixed(2)}원 (약 ${roundedKRW}원)`;
+    }
+  </script>
+</body>
+</html>
